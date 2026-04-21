@@ -1,5 +1,5 @@
 /**
- * Offline-first sync service for NHS Shift Planner.
+ * Offline-first sync service for MyShifts.
  *
  * Strategy:
  *  - Local SQLite is always the source of truth.

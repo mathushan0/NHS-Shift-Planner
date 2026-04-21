@@ -1,6 +1,6 @@
-# NHS Shift Planner — User Guide
+# MyShifts — User Guide
 
-Welcome to NHS Shift Planner. This guide covers everything you need to get the most out of the app.
+Welcome to MyShifts. This guide covers everything you need to get the most out of the app.
 
 ---
 
@@ -141,10 +141,10 @@ You can select more than one. For example, set both a 2-hour reminder and a 30-m
 If you see a yellow banner on the Dashboard that says notifications are disabled:
 
 1. Tap the banner — it will take you directly to your device's notification settings.
-2. Find **NHS Shift Planner** in the list and turn notifications **On**.
+2. Find **MyShifts** in the list and turn notifications **On**.
 3. Return to the app — the banner will disappear.
 
-**Android tip:** Some Android phones (Samsung, Huawei, etc.) aggressively kill background apps to save battery. If your reminders aren't arriving reliably, go to your phone's battery settings and disable battery optimisation for NHS Shift Planner.
+**Android tip:** Some Android phones (Samsung, Huawei, etc.) aggressively kill background apps to save battery. If your reminders aren't arriving reliably, go to your phone's battery settings and disable battery optimisation for MyShifts.
 
 ---
 
@@ -195,7 +195,7 @@ The PDF includes shift type, date, start/end time, duration, location, and statu
 
 ## 8. Using the app offline
 
-NHS Shift Planner is built to work without an internet connection. Everything — adding shifts, viewing your calendar, checking hours, setting reminders — works with no network.
+MyShifts is built to work without an internet connection. Everything — adding shifts, viewing your calendar, checking hours, setting reminders — works with no network.
 
 ### What happens when you're offline
 
@@ -299,4 +299,4 @@ The app shows UK bank holidays on your calendar. By default this is England & Wa
 
 ---
 
-*NHS Shift Planner v1.0.0 · Made for NHS staff, by people who care about getting it right.*
+*MyShifts v1.0.0 · Made for NHS staff, by people who care about getting it right.*

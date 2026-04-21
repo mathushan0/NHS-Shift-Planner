@@ -7,7 +7,7 @@
     "base": {
       "node": "20.x",
       "cache": {
-        "key": "nhs-shift-planner-v1",
+        "key": "myshifts-v1",
         "paths": ["node_modules"]
       }
     },

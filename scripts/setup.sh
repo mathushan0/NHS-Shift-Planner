@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# NHS Shift Planner — Development Setup Script
+# MyShifts — Development Setup Script
 # Run once after cloning the repo.
 # Usage: ./scripts/setup.sh
 
@@ -129,7 +129,7 @@ fi
 # ─────────────────────────────────────────────
 echo ""
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${GREEN} NHS Shift Planner — Setup Complete!${NC}"
+echo -e "${GREEN} MyShifts — Setup Complete!${NC}"
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo ""
 echo "Next steps:"

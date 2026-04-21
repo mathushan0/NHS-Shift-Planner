@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NHS Shift Planner",
-    "slug": "nhs-shift-planner",
+    "name": "MyShifts",
+    "slug": "myshifts",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,10 +13,10 @@
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "uk.nhs.shiftplanner",
+      "bundleIdentifier": "com.myshifts.app",
       "buildNumber": "1",
       "infoPlist": {
-        "NSUserNotificationUsageDescription": "NHS Shift Planner uses notifications to remind you before your shifts start.",
+        "NSUserNotificationUsageDescription": "MyShifts uses notifications to remind you before your shifts start.",
         "UIRequiresFullScreen": true
       }
     },
@@ -34,7 +34,7 @@
     ],
     "extra": {
       "eas": {
-        "projectId": "nhs-shift-planner"
+        "projectId": "myshifts"
       }
     }
   }

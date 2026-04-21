@@ -1,5 +1,5 @@
-// NHS Brand Colours — Light Mode
-export const NHSColors = {
+// App Brand Colours — Light Mode
+export const AppColors = {
   // Primary brand
   nhsBlue: '#005EB8',
   nhsDarkBlue: '#003087',

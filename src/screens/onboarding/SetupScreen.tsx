@@ -120,9 +120,9 @@ export function SetupScreen({ navigation }: Props) {
             containerStyle={{ marginBottom: spacing[4] }}
           />
 
-          {/* NHS Trust */}
+          {/* Trust / Organisation */
           <FormTextInput
-            label="NHS Trust / Organisation (optional)"
+            label="Trust / Organisation (optional)"
             value={nhsTrust}
             onChangeText={setNhsTrust}
             placeholder="e.g. Leeds Teaching Hospitals"

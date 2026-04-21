@@ -1,4 +1,4 @@
-# Architecture Document — NHS Shift Planner
+# Architecture Document — MyShifts
 **Version:** 1.0 MVP  
 **Produced by:** Systems Architect Agent  
 **Date:** 2026-04-21  
@@ -791,7 +791,7 @@ npx expo start --dev-client
 ### 10.1 Repository Structure (Turborepo Monorepo)
 
 ```
-nhs-shift-planner/
+myshifts/
 ├── apps/
 │   ├── mobile/              # Expo bare workflow (iOS + Android)
 │   │   ├── ios/             # Native iOS project (gitignored binaries)

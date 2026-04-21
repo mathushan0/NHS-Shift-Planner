@@ -1,5 +1,5 @@
 /**
- * Supabase client setup for NHS Shift Planner.
+ * Supabase client setup for MyShifts.
  *
  * The anon key is safe to bundle — Row-Level Security enforces access control.
  * The service_role key must NEVER be bundled; it lives only in Edge Functions / CI.
@@ -66,7 +66,7 @@ export function getSupabaseClient(): SupabaseClient {
     },
     global: {
       headers: {
-        'X-Client-Info': 'nhs-shift-planner-ios',
+        'X-Client-Info': 'myshifts-ios',
       },
     },
     db: {

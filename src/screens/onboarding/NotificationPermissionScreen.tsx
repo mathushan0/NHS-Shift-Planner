@@ -12,7 +12,7 @@ import { useTheme } from '../../hooks/useTheme';
 import { useUIStore } from '../../stores/uiStore';
 import { PrimaryButton } from '../../components/atoms/PrimaryButton';
 import { SecondaryButton } from '../../components/atoms/SecondaryButton';
-import { NHSColors } from '../../theme/colors';
+import { AppColors } from '../../theme/colors';
 
 type Props = NativeStackScreenProps<OnboardingStackParamList, 'OnboardingPermissions'>;
 
@@ -31,13 +31,13 @@ export function NotificationPermissionScreen({ navigation }: Props) {
       setNotificationsGranted(false);
     } finally {
       setIsLoading(false);
-      navigation.navigate('OnboardingDone');
+      navigation.navigate('OnboardingDisclaimer');
     }
   }
 
   function skipPermissions() {
     setNotificationsGranted(false);
-    navigation.navigate('OnboardingDone');
+    navigation.navigate('OnboardingDisclaimer');
   }
 
   return (
@@ -57,7 +57,7 @@ export function NotificationPermissionScreen({ navigation }: Props) {
         </View>
 
         {/* Illustration */}
-        <View style={[styles.illustrationContainer, { backgroundColor: NHSColors.nhsPaleGrey, borderRadius: 24 }]}>
+        <View style={[styles.illustrationContainer, { backgroundColor: AppColors.nhsPaleGrey, borderRadius: 24 }]}>
           <Text style={styles.illustrationEmoji}>🔔</Text>
         </View>
 
@@ -66,7 +66,7 @@ export function NotificationPermissionScreen({ navigation }: Props) {
           Stay on time
         </Text>
         <Text style={[typography.body1, { color: colors.textSecondary, textAlign: 'center', marginBottom: spacing[2] }]}>
-          Allow notifications so NHS Shift Planner can remind you before every shift.
+          Allow notifications so MyShifts can remind you before every shift.
         </Text>
         <Text style={[typography.body2, { color: colors.textSecondary, textAlign: 'center', marginBottom: spacing[8] }]}>
           You can change this any time in Settings.

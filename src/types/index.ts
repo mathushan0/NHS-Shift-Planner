@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────
-// Core domain types for NHS Shift Planner
+// Core domain types for MyShifts
 // ─────────────────────────────────────────────
 
 export type ShiftStatus =
@@ -171,6 +171,7 @@ export type OnboardingStackParamList = {
   OnboardingSetup: undefined;
   OnboardingPermissions: undefined;
   OnboardingDone: undefined;
+  OnboardingDisclaimer: undefined;
 };
 
 export type MainTabParamList = {

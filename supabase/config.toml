@@ -1,9 +1,9 @@
 # Supabase Project Configuration
-# NHS Shift Planner
+# MyShifts
 # Documentation: https://supabase.com/docs/guides/cli/config
 
 [project]
-project_id = "nhs-shift-planner"
+project_id = "myshifts"
 
 [api]
 enabled = true
@@ -53,7 +53,7 @@ pop3_port = 54326
 [storage]
 enabled = true
 file_size_limit = "50MiB"
-# NHS Shift Planner doesn't use storage extensively, but keep enabled for profile photos (V2)
+# MyShifts
 
 [storage.image_transformation]
 enabled = true
@@ -63,8 +63,8 @@ enabled = true
 # JWT secret used to sign tokens (auto-generated for local dev)
 site_url = "http://127.0.0.1:3000"
 additional_redirect_urls = [
-  "nhsshiftplanner://",
-  "exp+nhs-shift-planner://",
+  "myshifts://",
+  "exp+myshifts://",
   "http://localhost:3000"
 ]
 jwt_expiry = 3600
@@ -99,7 +99,7 @@ inspector_port = 8083
 
 [analytics]
 enabled = false
-# No analytics for NHS Shift Planner — privacy-first approach
+# No analytics for MyShifts — privacy-first approach
 
 [experimental]
 orioledb_version = ""

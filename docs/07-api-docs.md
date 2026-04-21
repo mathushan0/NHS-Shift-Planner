@@ -1,4 +1,4 @@
-# NHS Shift Planner — Technical API Documentation
+# MyShifts — Technical API Documentation
 
 **Version:** 1.0.0  
 **Date:** 2026-04-21

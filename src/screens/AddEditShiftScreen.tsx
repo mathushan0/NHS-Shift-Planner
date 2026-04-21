@@ -311,7 +311,7 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
             label="Notes"
             value={notes}
             onChangeText={setNotes}
-            placeholder="Any additional notes..."
+            placeholder="Any additional notes... (Do not enter patient information)"
             multiline
             numberOfLines={3}
             returnKeyType="default"

@@ -10,7 +10,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { OnboardingStackParamList } from '../../types';
 import { useTheme } from '../../hooks/useTheme';
 import { PrimaryButton } from '../../components/atoms/PrimaryButton';
-import { NHSColors } from '../../theme/colors';
+import { AppColors } from '../../theme/colors';
 
 type Props = NativeStackScreenProps<OnboardingStackParamList, 'OnboardingWelcome'>;
 
@@ -18,12 +18,12 @@ export function WelcomeScreen({ navigation }: Props) {
   const { typography, spacing } = useTheme();
 
   return (
-    <View style={[styles.container, { backgroundColor: NHSColors.nhsBlue }]}>
+    <View style={[styles.container, { backgroundColor: AppColors.nhsBlue }]}>
       <SafeAreaView style={styles.safe}>
-        {/* NHS logo area */}
+        {/* Logo area */
         <View style={styles.logoArea}>
-          <View style={styles.nhsLogo}>
-            <Text style={styles.nhsLogoText}>NHS</Text>
+          <View style={styles.appLogo}>
+            <Text style={styles.appLogoText}>MyShifts</Text>
           </View>
         </View>
 
@@ -31,7 +31,7 @@ export function WelcomeScreen({ navigation }: Props) {
         <View style={styles.content}>
           <Text style={styles.title}>Shift Planner</Text>
           <Text style={styles.subtitle}>
-            Your personal NHS rota organiser — track shifts, view hours, and never miss a reminder.
+            Your personal rota organiser — track shifts, view hours, and never miss a reminder.
           </Text>
         </View>
 
@@ -78,16 +78,16 @@ const styles = StyleSheet.create({
     paddingTop: 48,
     paddingBottom: 24,
   },
-  nhsLogo: {
+  appLogo: {
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 20,
     paddingVertical: 10,
     borderRadius: 8,
   },
-  nhsLogoText: {
+  appLogoText: {
     fontSize: 28,
     fontWeight: '900',
-    color: NHSColors.nhsBlue,
+    color: AppColors.nhsBlue,
     letterSpacing: 4,
   },
   content: {

@@ -11,7 +11,7 @@ import { useThemeStore } from './src/stores/themeStore';
 import { useUIStore } from './src/stores/uiStore';
 import { RootNavigator } from './src/navigation/RootNavigator';
 import { SnackbarContainer } from './src/components/molecules/Snackbar';
-import { NHSColors } from './src/theme/colors';
+import { AppColors } from './src/theme/colors';
 
 const FIXED_USER_ID = 'local-user-1';
 
@@ -37,7 +37,7 @@ export default function App() {
 
   if (!dbReady) {
     return (
-      <View style={[styles.loading, { backgroundColor: NHSColors.nhsBlue }]}>
+      <View style={[styles.loading, { backgroundColor: AppColors.nhsBlue }]}>
         {dbError ? null : <ActivityIndicator size="large" color="#FFFFFF" />}
       </View>
     );

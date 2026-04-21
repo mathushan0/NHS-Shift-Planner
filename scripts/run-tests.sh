@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# NHS Shift Planner — Test Runner Script
+# MyShifts — Test Runner Script
 # Usage: ./scripts/run-tests.sh [--coverage] [--watch]
 
 set -euo pipefail
@@ -20,7 +20,7 @@ for arg in "$@"; do
   esac
 done
 
-echo "🧪 NHS Shift Planner — Test Suite"
+echo "🧪 MyShifts — Test Suite"
 echo ""
 
 # ─────────────────────────────────────────────

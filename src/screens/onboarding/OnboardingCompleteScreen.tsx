@@ -11,7 +11,7 @@ import { OnboardingStackParamList } from '../../types';
 import { useTheme } from '../../hooks/useTheme';
 import { useSettingsStore } from '../../stores/settingsStore';
 import { PrimaryButton } from '../../components/atoms/PrimaryButton';
-import { NHSColors } from '../../theme/colors';
+import { AppColors } from '../../theme/colors';
 
 type Props = NativeStackScreenProps<OnboardingStackParamList, 'OnboardingDone'>;
 
@@ -58,7 +58,7 @@ export function OnboardingCompleteScreen({ navigation }: Props) {
         <Animated.View
           style={[
             styles.checkContainer,
-            { backgroundColor: NHSColors.nhsAquaGreen, transform: [{ scale: scaleAnim }] },
+            { backgroundColor: AppColors.nhsAquaGreen, transform: [{ scale: scaleAnim }] },
           ]}
         >
           <Text style={styles.checkmark}>✓</Text>
@@ -79,7 +79,7 @@ export function OnboardingCompleteScreen({ navigation }: Props) {
               { color: colors.textSecondary, textAlign: 'center', marginBottom: spacing[8] },
             ]}
           >
-            Your NHS Shift Planner is ready. Start by adding your first shift.
+            MyShifts is ready. Start by adding your first shift.
           </Text>
 
           {/* Summary chips */}

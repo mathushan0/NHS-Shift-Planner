@@ -1,6 +1,6 @@
-# NHS Shift Planner
+# MyShifts
 
-A free, offline-first iOS app for NHS staff to track shifts, get reminders, and verify hours worked.
+A free, offline-first iOS app to track shifts, get reminders, and verify hours worked.
 
 > **Status:** v1.0.0 — Ready for TestFlight
 
@@ -9,8 +9,8 @@ A free, offline-first iOS app for NHS staff to track shifts, get reminders, and 
 ## Quick Start
 
 ```bash
-git clone https://github.com/your-username/nhs-shift-planner.git
-cd nhs-shift-planner
+git clone https://github.com/your-username/myshifts.git
+cd myshifts
 ./scripts/setup.sh
 npm start
 ```
@@ -21,12 +21,12 @@ That's it for local development. The app works fully offline with no backend req
 
 ## Overview
 
-NHS staff receive rotas through fragmented channels — paper, email, WhatsApp, departmental systems. NHS Shift Planner is a single place to log all shifts, get push reminders before each one, and see exactly how many hours you've worked in a pay period.
+NHS staff receive rotas through fragmented channels — paper, email, WhatsApp, departmental systems. MyShifts is a single place to log all shifts, get push reminders before each one, and see exactly how many hours you've worked in a pay period.
 
 **Core principles:**
 - **Offline-first** — every feature works without internet. Cloud sync is optional.
 - **No login required** — works immediately out of the box.
-- **NHS-designed** — colour-coded shift types, bank shift tracking, UK bank holidays, contracted hours comparison.
+- **Purpose-built** — colour-coded shift types, bank shift tracking, UK bank holidays, contracted hours comparison.
 
 ---
 
@@ -48,7 +48,7 @@ NHS staff receive rotas through fragmented channels — paper, email, WhatsApp, 
 ## Project Structure
 
 ```
-nhs-shift-planner/
+myshifts/
 ├── src/
 │   ├── screens/           # App screens (Dashboard, Calendar, HoursSummary, etc.)
 │   ├── components/
@@ -90,8 +90,8 @@ nhs-shift-planner/
 
 ```bash
 # 1. Clone and install
-git clone https://github.com/your-username/nhs-shift-planner.git
-cd nhs-shift-planner
+git clone https://github.com/your-username/myshifts.git
+cd myshifts
 ./scripts/setup.sh
 
 # 2. Configure environment
@@ -264,7 +264,7 @@ Create your project at [supabase.com](https://supabase.com). Choose a **European
 | [`docs/03-ux-design.md`](docs/03-ux-design.md) | UX flows and screen designs |
 | [`docs/04-deployment.md`](docs/04-deployment.md) | Full deployment and CI/CD guide |
 | [`docs/05-qa-report.md`](docs/05-qa-report.md) | QA test report |
-| [`docs/06-user-guide.md`](docs/06-user-guide.md) | End user guide for NHS staff |
+| [`docs/06-user-guide.md`](docs/06-user-guide.md) | End user guide |
 | [`docs/07-api-docs.md`](docs/07-api-docs.md) | Technical API and schema docs |
 
 ---

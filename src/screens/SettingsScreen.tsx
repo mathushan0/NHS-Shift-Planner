@@ -266,7 +266,7 @@ export function SettingsScreen({ navigation }: Props) {
           />
           <SettingRow
             label="Open Source"
-            subtitle="NHS Shift Planner — free for NHS staff"
+            subtitle="MyShifts — free for healthcare workers"
           />
         </View>
       </ScrollView>

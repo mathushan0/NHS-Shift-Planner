@@ -5,6 +5,7 @@ import { WelcomeScreen } from '../screens/onboarding/WelcomeScreen';
 import { SetupScreen } from '../screens/onboarding/SetupScreen';
 import { NotificationPermissionScreen } from '../screens/onboarding/NotificationPermissionScreen';
 import { OnboardingCompleteScreen } from '../screens/onboarding/OnboardingCompleteScreen';
+import { DisclaimerScreen } from '../screens/DisclaimerScreen';
 
 const Stack = createNativeStackNavigator<OnboardingStackParamList>();
 
@@ -16,6 +17,7 @@ export function OnboardingStack() {
       <Stack.Screen name="OnboardingWelcome" component={WelcomeScreen} />
       <Stack.Screen name="OnboardingSetup" component={SetupScreen} />
       <Stack.Screen name="OnboardingPermissions" component={NotificationPermissionScreen} />
+      <Stack.Screen name="OnboardingDisclaimer" component={DisclaimerScreen} />
       <Stack.Screen name="OnboardingDone" component={OnboardingCompleteScreen} />
     </Stack.Navigator>
   );

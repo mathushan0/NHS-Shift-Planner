@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to NHS Shift Planner are documented here.
+All notable changes to MyShifts are documented here.
 
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).  
 Versioning follows [Semantic Versioning](https://semver.org/).
@@ -78,7 +78,7 @@ Initial release. 🎉
 - Account deletion with full cloud data erasure (GDPR right to erasure)
 
 #### Accessibility & design
-- NHS brand colours as defaults
+- App brand colours as defaults
 - High-contrast shift type colours
 - Support for system dynamic text sizing
 - Portrait-only layout
@@ -115,4 +115,4 @@ Initial release. 🎉
 
 ---
 
-[1.0.0]: https://github.com/your-username/nhs-shift-planner/releases/tag/v1.0.0
+[1.0.0]: https://github.com/your-username/myshifts/releases/tag/v1.0.0

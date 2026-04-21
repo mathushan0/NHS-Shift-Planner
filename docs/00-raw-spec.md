@@ -1,4 +1,4 @@
-# NHS Shift Planner — Raw Product Specification
+# MyShifts — Raw Product Specification
 
 ## Product Vision
 NHS staff work across multiple rotations, wards, and contracted hours. Shifts arrive via paper rotas, emails, WhatsApp, and departmental systems — none of which talk to each other. Staff lose track of hours, miss shift reminders, and struggle to calculate pay. This app puts every shift in one free, purpose-built place.

@@ -1,4 +1,4 @@
-# Deployment Guide — NHS Shift Planner
+# Deployment Guide — MyShifts
 
 **Version:** 1.0  
 **Platform:** iOS only (TestFlight → App Store)  
@@ -58,8 +58,8 @@ sudo gem install cocoapods
 ### 2.1 Clone and install
 
 ```bash
-git clone https://github.com/your-username/nhs-shift-planner.git
-cd nhs-shift-planner
+git clone https://github.com/your-username/myshifts.git
+cd myshifts
 ./scripts/setup.sh
 ```
 
@@ -297,7 +297,7 @@ feature/*   ← feature branches; CI on PR
 ### 8.1 Create project
 
 1. Go to [supabase.com](https://supabase.com) → New Project
-2. Name: `nhs-shift-planner`
+2. Name: `myshifts`
 3. Region: **Europe West (London)** or **EU Central (Frankfurt)** — GDPR requirement
 4. Password: generate a strong password, save it
 
@@ -355,7 +355,7 @@ supabase secrets set SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
 
 ### 9.1 Build monitoring
 
-- **EAS Dashboard:** https://expo.dev/accounts/[account]/projects/nhs-shift-planner/builds
+- **EAS Dashboard:** https://expo.dev/accounts/[account]/projects/myshifts/builds
 - Build notifications: enable email notifications in Expo account settings
 
 ### 9.2 App monitoring

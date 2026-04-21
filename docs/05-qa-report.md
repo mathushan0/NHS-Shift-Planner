@@ -1,4 +1,4 @@
-# QA Report — NHS Shift Planner
+# QA Report — MyShifts
 **Produced by:** QA Engineer Agent  
 **Date:** 2026-04-21  
 **Reviewed against:** Project Brief v1.0 (01-project-brief.md)  
@@ -302,4 +302,4 @@ Once CRIT-01 + all MAJOR issues are resolved, resubmit for QA sign-off. The arch
 
 ---
 
-*QA Report produced by QA Engineer Agent — NHS Shift Planner v1.0 MVP*
+*QA Report produced by QA Engineer Agent — MyShifts v1.0 MVP*

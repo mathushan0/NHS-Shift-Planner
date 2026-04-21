@@ -1,5 +1,5 @@
 /**
- * Auth service for NHS Shift Planner.
+ * Auth service for MyShifts.
  *
  * Design principles:
  *  - Auth is OPTIONAL. The app works fully without it.

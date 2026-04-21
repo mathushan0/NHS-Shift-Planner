@@ -1,4 +1,4 @@
-# Project Brief — NHS Shift Planner
+# Project Brief — MyShifts
 **Version:** 1.0 MVP  
 **Produced by:** Briefing Analyst Agent  
 **Date:** 2026-04-21  

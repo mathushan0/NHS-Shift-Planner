@@ -1,4 +1,4 @@
-# UX Design Document — NHS Shift Planner
+# UX Design Document — MyShifts
 **Version:** 1.0 MVP  
 **Produced by:** UX Designer Agent  
 **Date:** 2026-04-21  
@@ -279,7 +279,7 @@ START — Notification fires on device
   │
   Notification content:
   ┌─────────────────────────────────────────┐
-  │ ⏰ NHS Shift Planner                    │
+  │ ⏰ MyShifts                    │
   │ Long Day starts in 2 hours              │
   │ Ward 6 · City Hospital                  │
   └─────────────────────────────────────────┘
@@ -408,7 +408,7 @@ The web companion uses a top navigation bar (no tab bar — desktop context):
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
-│  🏥 NHS Shift Planner    [Calendar] [Hours] [Settings]  [Sync ↑] │
+│  🏥 MyShifts    [Calendar] [Hours] [Settings]  [Sync ↑] │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
@@ -748,7 +748,7 @@ All components follow the design tokens defined above. Listed from atomic to com
 │                                 │
 │          [NHS Logo Mark]        │
 │                                 │
-│       NHS Shift Planner         │
+│       MyShifts         │
 │                                 │
 │          (loading...)           │
 │                                 │
@@ -1226,7 +1226,7 @@ Accessed via "More" tab.
 
 ```
 ┌─────────────────────────────────────────────┐
-│ ≡   NHS Shift Planner             🔔         │
+│ ≡   MyShifts             🔔         │
 ├─────────────────────────────────────────────┤
 │                                             │
 │  ┌─────────────────────────────────────┐   │
@@ -1363,7 +1363,7 @@ Blue info style. Auto-dismisses when connectivity restored.
 
 ```
 ┌────────────────────────┐
-│ NHS Shift Planner      │  ← app name, 10pt
+│ MyShifts      │  ← app name, 10pt
 │                        │
 │ NEXT SHIFT             │  ← label, 11pt, #FFFFFF 70%
 │ Long Day               │  ← type name, 17pt Bold, white
@@ -1379,7 +1379,7 @@ Corner radius: system (≈13px on iOS)
 
 ```
 ┌──────────────────────────────────────────────┐
-│ NHS Shift Planner                            │  ← 10pt
+│ MyShifts                            │  ← 10pt
 │                                              │
 │  NEXT SHIFT           In 1h 45m remaining   │
 │                                              │
@@ -1395,7 +1395,7 @@ Background: shift type colour (gradient — full colour top, darkened bottom)
 
 ```
 ┌────────────────────────┐
-│ NHS Shift Planner      │
+│ MyShifts      │
 │                        │
 │    🎉                  │
 │    No upcoming         │
@@ -1411,7 +1411,7 @@ Matches medium iOS widget layout. Uses Glance's Material3 components with NHS Bl
 
 ```
 ┌──────────────────────────────────────────────┐
-│ 📅 NHS Shift Planner              [Open App] │
+│ 📅 MyShifts              [Open App] │
 │ ─────────────────────────────────────────── │
 │  Next: Long Day · Wed 22 Apr                │
 │  07:30 – 20:00 · Ward 6, City Hospital      │
@@ -1437,7 +1437,7 @@ If widget data is > 30 minutes old (e.g. widget refresh delayed):
 ┌─────────────────────────────────────────────┐
 │                                             │
 │                                             │
-│         [NHS Shift Planner Logo]            │
+│         [MyShifts Logo]            │
 │                                             │
 │     Your shifts, all in one place.          │
 │                                             │
@@ -1505,7 +1505,7 @@ All fields optional — "Skip" link in top right. None block access to the app.
 │                                             │
 │     Never miss a shift                      │
 │                                             │
-│  NHS Shift Planner can remind you before    │
+│  MyShifts can remind you before    │
 │  each shift starts — even without internet. │
 │                                             │
 │  Reminders are set per shift and work       │
@@ -1705,7 +1705,7 @@ The web app uses a top navigation bar. Layout adapts:
 **Desktop (≥1024px):**
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│  🏥 NHS Shift Planner    Calendar | Hours | History | Settings│
+│  🏥 MyShifts    Calendar | Hours | History | Settings│
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
 │  [CALENDAR — 2/3 width]    │  [DETAILS PANEL — 1/3 width]   │

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# NHS Shift Planner — iOS Build Script
+# MyShifts — iOS Build Script
 # Triggers an EAS Build for iOS.
 # Usage: ./scripts/build-ios.sh [profile]
 #   profile: development | preview | production (default: development)
