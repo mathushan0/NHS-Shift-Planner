@@ -1,8 +1,6 @@
 name: Deploy Preview (TestFlight)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 concurrency:
@@ -103,3 +101,4 @@ jobs:
         run: |
           echo "❌ TestFlight deployment failed."
           echo "Check EAS Build dashboard: https://expo.dev"
+
