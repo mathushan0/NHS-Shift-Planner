@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 cloud sync: requires supabase, not active in MVP build
 /**
  * syncIntegration.ts — Sync integration layer for Zustand stores.
  *

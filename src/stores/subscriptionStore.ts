@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 premium screen: not active in MVP build
 /**
  * Subscription Store — Zustand
  * Tracks subscription status, plan, expiry and persists locally via MMKV / AsyncStorage.

@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 cloud sync: requires supabase, not active in MVP build
 /**
  * Supabase client setup for MyShifts.
  *

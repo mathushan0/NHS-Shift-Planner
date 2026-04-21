@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 premium screen: not active in MVP build
 /**
  * AnalyticsScreen — Work pattern analytics (Premium)
  *

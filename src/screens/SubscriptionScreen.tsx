@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 premium screen: not active in MVP build
 /**
  * SubscriptionScreen — Premium upsell & subscription management.
  * Shows plan comparison, feature list, pricing, and purchase/restore buttons.

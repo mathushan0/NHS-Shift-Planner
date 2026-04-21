@@ -106,7 +106,7 @@ export async function getUpcomingShifts(
   );
 
   return rows.map(row => ({
-    ...(row as Shift),
+    ...(row as unknown as Shift),
     shift_type: JSON.parse(row.shift_type_json as string),
   }));
 }
@@ -138,7 +138,7 @@ export async function getShiftsForHours(
   );
 
   return rows.map(row => ({
-    ...(row as Shift),
+    ...(row as unknown as Shift),
     shift_type: JSON.parse(row.shift_type_json as string),
   }));
 }
@@ -223,7 +223,7 @@ export async function checkOverlap(
   );
 
   return rows.map(row => ({
-    ...(row as Shift),
+    ...(row as unknown as Shift),
     shift_type: JSON.parse(row.shift_type_json as string),
   }));
 }
@@ -262,7 +262,7 @@ export async function getAllShiftsPaginated(
   );
 
   return rows.map(row => ({
-    ...(row as Shift),
+    ...(row as unknown as Shift),
     shift_type: JSON.parse(row.shift_type_json as string),
   }));
 }

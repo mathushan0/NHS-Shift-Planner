@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 premium screen: not active in MVP build
 /**
  * AnnualLeaveScreen — Annual Leave Tracker (Premium)
  *

@@ -2,18 +2,22 @@ import React, { useEffect, useRef } from 'react';
 import { View, Animated, StyleSheet, AccessibilityInfo } from 'react-native';
 import { useTheme } from '../../hooks/useTheme';
 
-type StatusType = 'in_progress' | 'scheduled' | 'completed' | 'cancelled' | 'default';
+type StatusType = 'in_progress' | 'scheduled' | 'completed' | 'cancelled' | 'sick' | 'annual_leave' | 'swapped_out' | 'swapped_in' | 'default';
 
 interface Props {
   status: StatusType;
   size?: number;
 }
 
-const STATUS_COLORS: Record<StatusType, (colors: { success: string; primary: string; textDisabled: string; error: string; textSecondary: string }) => string> = {
+const STATUS_COLORS: Record<StatusType, (colors: { success: string; primary: string; textDisabled: string; error: string; textSecondary: string; warning: string }) => string> = {
   in_progress: c => c.success,
   scheduled: c => c.primary,
   completed: c => c.textDisabled,
   cancelled: c => c.error,
+  sick: c => c.error,
+  annual_leave: c => c.success,
+  swapped_out: c => c.textSecondary,
+  swapped_in: c => c.primary,
   default: c => c.textSecondary,
 };
 
@@ -22,6 +26,10 @@ const STATUS_LABELS: Record<StatusType, string> = {
   scheduled: 'Shift scheduled',
   completed: 'Shift completed',
   cancelled: 'Shift cancelled',
+  sick: 'Called in sick',
+  annual_leave: 'Annual leave',
+  swapped_out: 'Swapped out',
+  swapped_in: 'Swapped in',
   default: 'Status unknown',
 };
 

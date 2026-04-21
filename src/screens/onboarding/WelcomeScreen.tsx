@@ -20,7 +20,7 @@ export function WelcomeScreen({ navigation }: Props) {
   return (
     <View style={[styles.container, { backgroundColor: AppColors.nhsBlue }]}>
       <SafeAreaView style={styles.safe}>
-        {/* Logo area */
+        {/* Logo area */}
         <View style={styles.logoArea}>
           <View style={styles.appLogo}>
             <Text style={styles.appLogoText}>MyShifts</Text>

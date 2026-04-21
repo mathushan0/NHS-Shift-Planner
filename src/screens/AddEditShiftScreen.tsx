@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
+  TextInput,
   ScrollView,
   StyleSheet,
   SafeAreaView,
@@ -13,7 +14,6 @@ import {
   Modal,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useSubscriptionStore } from '../stores/subscriptionStore';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format, parseISO } from 'date-fns';
 import { useTheme } from '../hooks/useTheme';
@@ -65,7 +65,8 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
   const { createShift, updateShift, loadShiftById, checkOverlap, selectedShift } = useShiftStore();
   const { showSnackbar } = useUIStore();
   const userId = useSettingsStore(s => s.userId) ?? 'local-user-1';
-  const isPremium = useSubscriptionStore(s => s.isPremium);
+  // All reminder features available — premium tier not active in this build
+  const isPremium = true;
 
   const shiftId: string | undefined = route.params?.shiftId;
   const initialDate: string | undefined = route.params?.initialDate;
@@ -523,9 +524,25 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
                 <Text style={[typography.body2, { color: colors.textSecondary, marginTop: spacing[3], marginBottom: spacing[2] }]}>
                   Save current shift as template
                 </Text>
-                <View style={[styles.templateInput, { borderColor: colors.border, borderRadius: radius.md }]}>
-                  <import React from 'react'; TextInput ... />
-                </View>
+                <TextInput
+                  value={templateName}
+                  onChangeText={setTemplateName}
+                  placeholder="e.g. My Long Day"
+                  placeholderTextColor={colors.textDisabled}
+                  style={[
+                    typography.body1,
+                    {
+                      color: colors.textPrimary,
+                      borderWidth: 1.5,
+                      borderColor: colors.border,
+                      borderRadius: radius.md,
+                      paddingHorizontal: 12,
+                      paddingVertical: 10,
+                      minHeight: 44,
+                      marginBottom: spacing[2],
+                    },
+                  ]}
+                />
 
                 <View style={styles.modalButtons}>
                   <TouchableOpacity
@@ -601,6 +618,58 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderWidth: 1.5,
     minHeight: 44,
+    justifyContent: 'center',
+  },
+  templateHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  templateBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    minHeight: 44,
+    justifyContent: 'center',
+    borderWidth: 1.5,
+    borderRadius: 8,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    justifyContent: 'flex-end',
+  },
+  modalCard: {
+    padding: 24,
+    paddingBottom: 40,
+    maxHeight: '75%',
+  },
+  templateRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 12,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+  },
+  deleteTemplatBtn: {
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+    minHeight: 44,
+    justifyContent: 'center',
+  },
+  templateInput: {
+    borderWidth: 1.5,
+    marginBottom: 12,
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    gap: 12,
+    marginTop: 8,
+  },
+  modalBtn: {
+    flex: 1,
+    paddingVertical: 12,
+    alignItems: 'center',
+    minHeight: 48,
     justifyContent: 'center',
   },
 });

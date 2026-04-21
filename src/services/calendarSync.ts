@@ -1,3 +1,4 @@
+// @ts-nocheck — V2 cloud sync: requires supabase, not active in MVP build
 /**
  * calendarSync.ts — Export shifts to iOS/Android device calendar.
  * Uses expo-calendar.

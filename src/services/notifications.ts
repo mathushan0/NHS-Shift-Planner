@@ -86,7 +86,7 @@ export async function scheduleShiftReminders(
           data: { shiftId: shift.id },
           sound: true,
         },
-        trigger: { date: triggerDate, type: Notifications.SchedulableTriggerInputTypes.DATE },
+        trigger: { date: triggerDate } as Notifications.DateTriggerInput,
       });
 
       await reminderRepo.createReminder(shift.id, minutesBefore, notificationId);
@@ -121,7 +121,7 @@ export async function rescheduleAllRemindersForShift(
 
 export function setupNotificationResponseHandler(
   onShiftOpen: (shiftId: string) => void
-): Notifications.EventSubscription {
+): Notifications.Subscription {
   return Notifications.addNotificationResponseReceivedListener(response => {
     const shiftId = response.notification.request.content.data?.shiftId as string | undefined;
     if (shiftId) {

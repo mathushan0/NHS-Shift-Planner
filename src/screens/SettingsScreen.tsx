@@ -49,15 +49,9 @@ interface SettingRowProps {
 }
 
 function SettingRow({ label, subtitle, right, onPress }: SettingRowProps) {
-  const { colors, typography, spacing } = useTheme();
-  const Container = onPress ? TouchableOpacity : View;
-
-  return (
-    <Container
-      onPress={onPress}
-      style={[styles.settingRow, { borderBottomColor: colors.border }]}
-      {...(onPress ? { accessibilityRole: 'button' } : {})}
-    >
+  const { colors, typography } = useTheme();
+  const inner = (
+    <>
       <View style={styles.settingLabel}>
         <Text style={[typography.body1, { color: colors.textPrimary }]}>{label}</Text>
         {subtitle ? (
@@ -65,7 +59,25 @@ function SettingRow({ label, subtitle, right, onPress }: SettingRowProps) {
         ) : null}
       </View>
       {right ? <View style={styles.settingRight}>{right}</View> : null}
-    </Container>
+    </>
+  );
+
+  if (onPress) {
+    return (
+      <TouchableOpacity
+        onPress={onPress}
+        style={[styles.settingRow, { borderBottomColor: colors.border }]}
+        accessibilityRole="button"
+      >
+        {inner}
+      </TouchableOpacity>
+    );
+  }
+
+  return (
+    <View style={[styles.settingRow, { borderBottomColor: colors.border }]}>
+      {inner}
+    </View>
   );
 }
 
@@ -93,12 +105,12 @@ function SectionHeader({ title }: { title: string }) {
 export function SettingsScreen({ navigation }: Props) {
   const { colors, typography, spacing, radius, elevation } = useTheme();
   const { setDarkModePreference, darkModePreference } = useThemeStore();
-  const { settings, updateSettings, setDisplayName, displayName } = useSettingsStore();
+  const { settings, updateSettings, setDisplayName, displayName, contractedHoursPerWeek } = useSettingsStore();
   const { showSnackbar, notificationsGranted } = useUIStore();
 
   const [name, setName] = useState(displayName ?? '');
   const [contractedHours, setContractedHours] = useState(
-    String(settings?.contracted_hours ?? '37.5')
+    String(contractedHoursPerWeek ?? '37.5')
   );
   const [isSaving, setIsSaving] = useState(false);
 

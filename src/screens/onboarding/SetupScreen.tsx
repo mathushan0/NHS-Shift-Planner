@@ -120,7 +120,7 @@ export function SetupScreen({ navigation }: Props) {
             containerStyle={{ marginBottom: spacing[4] }}
           />
 
-          {/* Trust / Organisation */
+          {/* Trust / Organisation */}
           <FormTextInput
             label="Trust / Organisation (optional)"
             value={nhsTrust}

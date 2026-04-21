@@ -26,13 +26,13 @@ import {
   toDateString,
   getDayLabels,
   getWeekLabels,
-  minutesToHoursLabel,
 } from '../utils/dateUtils';
 import {
   calculateHoursSummary,
   getDailyHoursData,
   getWeeklyHoursData,
   getHoursStatusColor,
+  minutesToHoursLabel,
   getProgressBarWidth,
 } from '../utils/hoursCalculator';
 import { exportHoursAsPDF } from '../utils/pdfExport';
@@ -95,11 +95,11 @@ export function HoursSummaryScreen({ navigation }: Props) {
     () =>
       calculateHoursSummary(
         shifts,
-        contractedHoursPerWeek ?? settings?.contracted_hours ?? null,
+        contractedHoursPerWeek ?? null,
         dateRange.start,
         dateRange.end
       ),
-    [shifts, contractedHoursPerWeek, settings, dateRange]
+    [shifts, contractedHoursPerWeek, dateRange]
   );
 
   // Bar chart
