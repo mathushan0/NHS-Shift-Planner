@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "NHS Shift Planner",
+    "slug": "nhs-shift-planner",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#005EB8"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "uk.nhs.shiftplanner",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSUserNotificationUsageDescription": "NHS Shift Planner uses notifications to remind you before your shifts start.",
+        "UIRequiresFullScreen": true
+      }
+    },
+    "plugins": [
+      "expo-font",
+      "expo-sqlite",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#005EB8",
+          "sounds": []
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "nhs-shift-planner"
+      }
+    }
+  }
+}

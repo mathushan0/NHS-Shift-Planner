@@ -1,0 +1,105 @@
+name: Deploy Preview (TestFlight)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-preview
+  cancel-in-progress: false
+
+jobs:
+  build-and-submit-testflight:
+    name: Build & Submit to TestFlight
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Setup EAS CLI
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest
+          token: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Run TypeScript type check
+        run: npm run ts:check
+
+      - name: EAS Build — iOS Preview (TestFlight)
+        id: eas-build
+        run: |
+          BUILD_ID=$(eas build \
+            --platform ios \
+            --profile preview \
+            --non-interactive \
+            --json \
+            | jq -r '.id')
+          echo "build_id=$BUILD_ID" >> "$GITHUB_OUTPUT"
+          echo "Build ID: $BUILD_ID"
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          EXPO_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          EXPO_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          APP_VARIANT: preview
+
+      - name: Wait for build to complete
+        run: |
+          echo "Waiting for EAS build ${{ steps.eas-build.outputs.build_id }} to finish..."
+          eas build:view ${{ steps.eas-build.outputs.build_id }} --json
+          # Poll until FINISHED or ERRORED
+          STATUS="IN_QUEUE"
+          ATTEMPTS=0
+          MAX_ATTEMPTS=60  # 60 × 60s = 60 minutes
+          while [[ "$STATUS" != "FINISHED" && "$STATUS" != "ERRORED" && "$STATUS" != "CANCELED" ]]; do
+            sleep 60
+            ATTEMPTS=$((ATTEMPTS + 1))
+            if [[ $ATTEMPTS -ge $MAX_ATTEMPTS ]]; then
+              echo "Build timed out after 60 minutes"
+              exit 1
+            fi
+            STATUS=$(eas build:view ${{ steps.eas-build.outputs.build_id }} --json | jq -r '.status')
+            echo "Build status: $STATUS (attempt $ATTEMPTS/$MAX_ATTEMPTS)"
+          done
+          if [[ "$STATUS" != "FINISHED" ]]; then
+            echo "Build failed with status: $STATUS"
+            exit 1
+          fi
+          echo "Build finished successfully"
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+
+      - name: Submit to TestFlight
+        run: |
+          eas submit \
+            --platform ios \
+            --id ${{ steps.eas-build.outputs.build_id }} \
+            --non-interactive
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+          # Apple credentials are stored in EAS secrets (configured via eas credentials)
+          # Required EAS secrets: EXPO_APPLE_APP_SPECIFIC_PASSWORD or App Store Connect API key
+
+      - name: Notify on success
+        if: success()
+        run: |
+          echo "✅ TestFlight build submitted successfully!"
+          echo "Build ID: ${{ steps.eas-build.outputs.build_id }}"
+          echo "Check App Store Connect for TestFlight status."
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "❌ TestFlight deployment failed."
+          echo "Check EAS Build dashboard: https://expo.dev"

@@ -1,0 +1,70 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native builds
+ios/build/
+android/build/
+android/app/build/
+*.jks
+*.p8
+*.p12
+*.mobileprovision
+*.orig.*
+
+# Build outputs
+build/
+*.ipa
+*.apk
+*.aab
+
+# Environment — NEVER commit these
+.env
+.env.local
+.env.*.local
+.env.development
+.env.staging
+.env.production
+
+# Secrets
+keys/
+*.p8
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+coverage/
+.nyc_output/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Supabase local data (contains dev credentials)
+supabase/.branches/
+supabase/.temp/
