@@ -21,6 +21,16 @@ export const AppColors = {
   shiftSick: '#DA291C',
   shiftBankHoliday: '#FFB81C',
   shiftRest: '#E8EDEE',
+  shiftOnCall: '#768692',
+
+  // Abbreviation badge defaults
+  abbrevTextLight: '#FFFFFF',
+  abbrevTextDark: '#231F20', // for light bg (Rest Day)
+
+  // Premium / subscription
+  premiumGold: '#FFB81C',
+  premiumGoldDark: '#E6A000',
+  premiumGoldLight: '#FFF3CC',
 } as const;
 
 export interface ColorTokens {

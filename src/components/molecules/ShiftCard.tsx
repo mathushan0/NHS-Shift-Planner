@@ -101,6 +101,7 @@ export function ShiftCard({ shift, onPress, onDelete }: Props) {
               <ShiftTypeBadge
                 typeName={shift.shift_type.name}
                 colourHex={shift.shift_type.colour_hex}
+                abbreviation={shift.shift_type.abbreviation}
               />
               <DurationPill minutes={shift.duration_minutes} />
             </View>

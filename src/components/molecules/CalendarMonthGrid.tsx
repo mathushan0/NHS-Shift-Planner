@@ -64,8 +64,8 @@ export function CalendarMonthGrid({
             const isSelected = dateStr === selectedDate;
             const isBankHoliday = bankHolidayDates.includes(dateStr);
 
-            const dotColors = dayShifts.slice(0, 3).map(s => s.shift_type.colour_hex);
-            const extraCount = Math.max(0, dayShifts.length - 3);
+            const visibleShifts = dayShifts.slice(0, 2);
+            const extraCount = Math.max(0, dayShifts.length - 2);
 
             const bgColor = today
               ? colors.primary
@@ -116,10 +116,20 @@ export function CalendarMonthGrid({
                   </Text>
                 ) : null}
 
-                {dotColors.length > 0 ? (
-                  <View style={styles.dotRow}>
-                    {dotColors.map((c, i) => (
-                      <View key={i} style={[styles.dot, { backgroundColor: c }]} />
+                {visibleShifts.length > 0 ? (
+                  <View style={styles.abbrevRow}>
+                    {visibleShifts.map((s, i) => (
+                      <View
+                        key={i}
+                        style={[
+                          styles.abbrevBadge,
+                          { backgroundColor: s.shift_type.colour_hex },
+                        ]}
+                      >
+                        <Text style={styles.abbrevText}>
+                          {s.shift_type.abbreviation || s.shift_type.name.slice(0, 2).toUpperCase()}
+                        </Text>
+                      </View>
                     ))}
                     {extraCount > 0 ? (
                       <Text style={{ fontSize: 7, color: colors.textSecondary }}>+{extraCount}</Text>
@@ -157,16 +167,25 @@ const styles = StyleSheet.create({
     minHeight: 44,
     paddingVertical: 4,
   },
-  dotRow: {
+  abbrevRow: {
     flexDirection: 'row',
     marginTop: 2,
     gap: 2,
     alignItems: 'center',
     justifyContent: 'center',
+    flexWrap: 'wrap',
   },
-  dot: {
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
+  abbrevBadge: {
+    paddingHorizontal: 3,
+    paddingVertical: 1,
+    borderRadius: 2,
+    minWidth: 16,
+    alignItems: 'center',
+  },
+  abbrevText: {
+    fontSize: 7,
+    fontWeight: '700',
+    color: '#FFFFFF',
+    letterSpacing: 0.2,
   },
 });

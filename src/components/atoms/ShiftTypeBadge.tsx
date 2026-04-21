@@ -5,12 +5,18 @@ import { useTheme } from '../../hooks/useTheme';
 interface Props {
   typeName: string;
   colourHex: string;
+  abbreviation?: string;
   size?: 'small' | 'large';
+  showFull?: boolean; // if true, show full name instead of abbreviation
 }
 
-export function ShiftTypeBadge({ typeName, colourHex, size = 'small' }: Props) {
+export function ShiftTypeBadge({ typeName, colourHex, abbreviation, size = 'small', showFull = false }: Props) {
   const { typography, radius } = useTheme();
   const isLarge = size === 'large';
+
+  const displayText = showFull
+    ? typeName
+    : (abbreviation || typeName.slice(0, 2).toUpperCase());
 
   return (
     <View
@@ -28,7 +34,7 @@ export function ShiftTypeBadge({ typeName, colourHex, size = 'small' }: Props) {
           isLarge && { ...typography.body2, fontWeight: '600' },
         ]}
       >
-        {typeName}
+        {displayText}
       </Text>
     </View>
   );

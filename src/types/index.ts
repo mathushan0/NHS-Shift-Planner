@@ -54,6 +54,7 @@ export interface ShiftType {
   user_id: string;
   name: string;
   colour_hex: string;
+  abbreviation: string; // e.g. LD, SD, N, R, OC, AL, S, BH
   default_duration_hours: number | null;
   is_paid: 1 | 0;
   sort_order: number;
@@ -178,6 +179,7 @@ export type MainTabParamList = {
   HomeTab: undefined;
   CalendarTab: undefined;
   HoursTab: undefined;
+  PremiumTab: undefined;
   MoreTab: undefined;
 };
 
@@ -205,6 +207,12 @@ export type MoreStackParamList = {
   ShiftTypesSettings: undefined;
   PayPeriodSettings: undefined;
   AccountSettings: undefined;
+  Subscription: undefined;
+  PayCalculator: undefined;
+  Analytics: undefined;
+  AnnualLeave: undefined;
+  Overtime: undefined;
+  PayslipComparison: undefined;
 };
 
 export type AddShiftModalParamList = {

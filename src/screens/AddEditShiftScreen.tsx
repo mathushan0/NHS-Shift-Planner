@@ -10,7 +10,10 @@ import {
   TouchableOpacity,
   Switch,
   Alert,
+  Modal,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useSubscriptionStore } from '../stores/subscriptionStore';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { format, parseISO } from 'date-fns';
 import { useTheme } from '../hooks/useTheme';
@@ -39,13 +42,30 @@ const REMINDER_OPTIONS = [
   { label: '30 min', value: 30 },
   { label: '1 hour', value: 60 },
   { label: '2 hours', value: 120 },
+  { label: '4 hours', value: 240 },
+  { label: '1 day', value: 1440 },
 ];
+
+const TEMPLATES_KEY = 'shift_templates';
+
+interface ShiftTemplate {
+  id: string;
+  name: string;
+  shift_type_id: string;
+  start_time: string;
+  end_time: string;
+  location: string;
+  notes: string;
+  is_bank_shift: boolean;
+  reminders: number[];
+}
 
 export function AddEditShiftScreen({ navigation, route }: Props) {
   const { colors, typography, spacing, radius } = useTheme();
   const { createShift, updateShift, loadShiftById, checkOverlap, selectedShift } = useShiftStore();
   const { showSnackbar } = useUIStore();
   const userId = useSettingsStore(s => s.userId) ?? 'local-user-1';
+  const isPremium = useSubscriptionStore(s => s.isPremium);
 
   const shiftId: string | undefined = route.params?.shiftId;
   const initialDate: string | undefined = route.params?.initialDate;
@@ -63,9 +83,13 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [overlapWarning, setOverlapWarning] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [templates, setTemplates] = useState<ShiftTemplate[]>([]);
+  const [showTemplateModal, setShowTemplateModal] = useState(false);
+  const [templateName, setTemplateName] = useState('');
 
   useEffect(() => {
     loadShiftTypes();
+    loadTemplates();
     if (isEditing) loadExistingShift();
   }, []);
 
@@ -183,10 +207,76 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
     }
   }
 
+  async function loadTemplates() {
+    try {
+      const raw = await AsyncStorage.getItem(TEMPLATES_KEY);
+      if (raw) setTemplates(JSON.parse(raw));
+    } catch {}
+  }
+
+  async function saveTemplate() {
+    if (!templateName.trim()) {
+      Alert.alert('Name required', 'Give your template a name.');
+      return;
+    }
+    const template: ShiftTemplate = {
+      id: Date.now().toString(),
+      name: templateName.trim(),
+      shift_type_id: selectedTypeId,
+      start_time: startTime,
+      end_time: endTime,
+      location,
+      notes,
+      is_bank_shift: isBankShift,
+      reminders: selectedReminders,
+    };
+    const updated = [...templates, template];
+    setTemplates(updated);
+    await AsyncStorage.setItem(TEMPLATES_KEY, JSON.stringify(updated));
+    setTemplateName('');
+    setShowTemplateModal(false);
+    showSnackbar({ message: 'Template saved', variant: 'success' });
+  }
+
+  async function deleteTemplate(id: string) {
+    const updated = templates.filter(t => t.id !== id);
+    setTemplates(updated);
+    await AsyncStorage.setItem(TEMPLATES_KEY, JSON.stringify(updated));
+  }
+
+  function applyTemplate(t: ShiftTemplate) {
+    setSelectedTypeId(t.shift_type_id);
+    setStartTime(t.start_time);
+    setEndTime(t.end_time);
+    setLocation(t.location);
+    setNotes(t.notes);
+    setIsBankShift(t.is_bank_shift);
+    setSelectedReminders(t.reminders);
+    setShowTemplateModal(false);
+    showSnackbar({ message: `Template "${t.name}" applied`, variant: 'success' });
+  }
+
+  const maxReminders = isPremium ? 5 : 1;
+
   function toggleReminder(minutes: number) {
-    setSelectedReminders(prev =>
-      prev.includes(minutes) ? prev.filter(m => m !== minutes) : [...prev, minutes]
-    );
+    setSelectedReminders(prev => {
+      if (prev.includes(minutes)) return prev.filter(m => m !== minutes);
+      if (prev.length >= maxReminders) {
+        if (!isPremium) {
+          Alert.alert(
+            'Premium Feature',
+            'Upgrade to Premium to add up to 5 reminders per shift.',
+            [
+              { text: 'Not now', style: 'cancel' },
+              { text: 'Upgrade', onPress: () => navigation.navigate('Subscription') },
+            ]
+          );
+          return prev;
+        }
+        return prev;
+      }
+      return [...prev, minutes];
+    });
   }
 
   const selectedType = shiftTypes.find(t => t.id === selectedTypeId);
@@ -348,13 +438,26 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
             />
           </View>
 
+          {/* Templates (Premium) */}
+          {isPremium && (
+            <View style={{ marginBottom: spacing[3] }}>
+              <View style={styles.templateHeader}>
+                <Text style={[typography.body2, { color: colors.textSecondary }]}>Templates</Text>
+                <TouchableOpacity onPress={() => setShowTemplateModal(true)} style={styles.templateBtn}>
+                  <Text style={[typography.caption, { color: colors.primary, fontWeight: '600' }]}>Load / Save</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+
           {/* Reminders */}
           <Text style={[typography.body2, { color: colors.textSecondary, marginBottom: spacing[2] }]}>
-            Reminders
+            Reminders {isPremium ? '(up to 5)' : '(1 on free)'}
           </Text>
           <View style={styles.reminderRow}>
             {REMINDER_OPTIONS.map(opt => {
               const isSelected = selectedReminders.includes(opt.value);
+              const isLocked = !isPremium && !isSelected && selectedReminders.length >= 1;
               return (
                 <TouchableOpacity
                   key={opt.value}
@@ -362,9 +465,10 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
                   style={[
                     styles.reminderChip,
                     {
-                      backgroundColor: isSelected ? colors.primary : colors.surface1,
+                      backgroundColor: isSelected ? colors.primary : isLocked ? colors.surface2 : colors.surface1,
                       borderColor: isSelected ? colors.primary : colors.border,
                       borderRadius: radius.md,
+                      opacity: isLocked ? 0.5 : 1,
                     },
                   ]}
                   accessibilityRole="checkbox"
@@ -376,12 +480,70 @@ export function AddEditShiftScreen({ navigation, route }: Props) {
                       { color: isSelected ? '#FFFFFF' : colors.textPrimary, fontWeight: '600' },
                     ]}
                   >
-                    {opt.label}
+                    {opt.label}{isLocked ? ' 👑' : ''}
                   </Text>
                 </TouchableOpacity>
               );
             })}
           </View>
+
+          {/* Template Modal */}
+          <Modal
+            visible={showTemplateModal}
+            animationType="slide"
+            transparent
+            onRequestClose={() => setShowTemplateModal(false)}
+          >
+            <View style={[styles.modalOverlay]}>
+              <View style={[styles.modalCard, { backgroundColor: colors.surface1, borderRadius: radius.xl }]}>
+                <Text style={[typography.heading3, { color: colors.textPrimary, marginBottom: spacing[4] }]}>
+                  Shift Templates
+                </Text>
+
+                {templates.length > 0 ? (
+                  templates.map(t => (
+                    <View key={t.id} style={[styles.templateRow, { borderColor: colors.border }]}>
+                      <TouchableOpacity onPress={() => applyTemplate(t)} style={{ flex: 1 }}>
+                        <Text style={[typography.body1, { color: colors.textPrimary, fontWeight: '600' }]}>{t.name}</Text>
+                        <Text style={[typography.caption, { color: colors.textSecondary }]}>
+                          {t.start_time}–{t.end_time}{t.location ? ` · ${t.location}` : ''}
+                        </Text>
+                      </TouchableOpacity>
+                      <TouchableOpacity onPress={() => deleteTemplate(t.id)} style={styles.deleteTemplatBtn}>
+                        <Text style={[typography.caption, { color: colors.error }]}>Delete</Text>
+                      </TouchableOpacity>
+                    </View>
+                  ))
+                ) : (
+                  <Text style={[typography.body2, { color: colors.textSecondary, marginBottom: spacing[3] }]}>
+                    No saved templates yet.
+                  </Text>
+                )}
+
+                <Text style={[typography.body2, { color: colors.textSecondary, marginTop: spacing[3], marginBottom: spacing[2] }]}>
+                  Save current shift as template
+                </Text>
+                <View style={[styles.templateInput, { borderColor: colors.border, borderRadius: radius.md }]}>
+                  <import React from 'react'; TextInput ... />
+                </View>
+
+                <View style={styles.modalButtons}>
+                  <TouchableOpacity
+                    onPress={saveTemplate}
+                    style={[styles.modalBtn, { backgroundColor: colors.primary, borderRadius: radius.md }]}
+                  >
+                    <Text style={[typography.body2, { color: '#FFFFFF', fontWeight: '700' }]}>Save Template</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => setShowTemplateModal(false)}
+                    style={[styles.modalBtn, { backgroundColor: colors.surface2, borderRadius: radius.md }]}
+                  >
+                    <Text style={[typography.body2, { color: colors.textPrimary, fontWeight: '600' }]}>Close</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </View>
+          </Modal>
 
           {/* Save / Cancel */}
           <PrimaryButton
